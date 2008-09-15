@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tjoc.Web.Validator", "Tjoc.Web.Validator\Tjoc.Web.Validator.csproj", "{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.HtmlRules", "Naak.HtmlRules\Naak.HtmlRules.csproj", "{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.UnitTests", "Naak.UnitTests\Naak.UnitTests.csproj", "{3194A851-8F32-4EAA-9134-F6EE3C0FAF82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.ExampleUI", "Naak.ExampleUI\Naak.ExampleUI.csproj", "{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3194A851-8F32-4EAA-9134-F6EE3C0FAF82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3194A851-8F32-4EAA-9134-F6EE3C0FAF82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3194A851-8F32-4EAA-9134-F6EE3C0FAF82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3194A851-8F32-4EAA-9134-F6EE3C0FAF82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
