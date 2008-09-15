@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXTERNAL_PROPERTIES: usdDatabaseVersion, CCNetLabel-->
+<project name="Naak" xmlns="http://nant.sf.net/schemas/nant.xsd">
+  <include buildfile="common.build"/>
+
+	<property name="company.name" value=".NET Accessibility Analysis Kit (NAAK)"/>
+
+	<!-- Version settings -->
+	<property name="revisionnumber" value="9999"/>
+	<property name="project.fullversion" value="1.0.${revisionnumber}.0" dynamic="true"/>
+	<property name="project.config" value="release"/>
+
+	<!-- Folder references -->
+	<property name="dir.solution" value="src"/>
+	<property name="dir.build" value="build" dynamic="true"/>
+	<property name="dir.test" value="${dir.build}/${nant.settings.currentframework}-${project.config}"/>
+	<property name="dir.package" value="${dir.build}/package"/>
+	<property name="dir.results" value="${dir.build}/results"/>
+	<property name="dir.installerpackage" value="latestVersion" />
+
+	<property name="package.file.name" value="${dir.installerpackage}/${project::get-name()}Package.zip" />
+
+	<!-- Compilation settings -->
+	<property name="nant.settings.currentframework" value="net-3.5" />
+	<property name="file.solution" value="${dir.solution}/${project::get-name()}.sln"/>
+
+	<!-- Testing settings -->
+  <property name="assembly.unittests" value="Naak.UnitTests.dll"/>
+
+	<!-- Common targets -->
+	<target name="build" depends="init, commonassemblyinfo, compile, move-for-test, test"/>
+	
+	<target name="build-and-package" depends="init, commonassemblyinfo, compile, move-for-test, test, package"/>
+
+	<target name="test-package" depends="init, commonassemblyinfo, compile, package"/>
+
+	<!-- Targets -->
+  <target name="move-for-test">
+		<copy todir="${dir.test}" flatten="true">
+			<fileset basedir="${dir.solution}">
+				<include name="/**/bin/${project.config}/**" />
+				<include name="/**/UI/bin/**" />
+				<include name="*.config"/>
+				<include name="*.cfg.xml"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="test">
+		<delete dir="${dir.results}" if="${directory::exists('${dir.results}')}" />
+		<mkdir dir="${dir.results}"/>
+
+		<nunit2 failonerror="true" verbose="true">
+			<formatter type="Xml" outputdir="${dir.results}" usefile="true" extension=".xml"/>
+			<formatter type="Plain" />
+			<test assemblyname="${dir.test}/${assembly.unittests}"/>
+		</nunit2>
+	</target>
+
+	<target name="package">
+
+		<delete dir="${dir.package}" if="${directory::exists('${dir.package}')}" />
+
+		<mkdir dir="${dir.package}"/>
+
+		<copy todir="${dir.package}" includeemptydirs="false">
+			<fileset basedir="${dir.solution}\Naak.HtmlRules\bin\${project.config}">
+				<include name="**\**"/>
+			</fileset>
+		</copy>
+
+		<exec program="lib\tarantino\Subversion\svn.exe" workingdir="." commandline="up LatestVersion --username ${svn.username} --password ${svn.password}" verbose="true" />
+
+		<delete file="${package.file.name}" />
+		<zip zipfile="${package.file.name}">
+			<fileset basedir="${dir.package}">
+				<include name="**" />
+			</fileset>
+		</zip>
+	</target>
+
+	<target name="commitPackage" depends="package">
+		<exec program="lib\tarantino\Subversion\svn.exe" workingdir="." commandline="ci latestVersion --username ${svn.username} --password ${svn.password} -m&quot;automatic check-in&quot;" verbose="true" />
+	</target>
+</project>

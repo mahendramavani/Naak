@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://nant.sf.net/schemas/nant.xsd">
+
+	<target name="init" description="Initializes build properties">
+		<delete dir="${dir.build}" failonerror="false" includeemptydirs="true" />
+		<mkdir dir="${dir.build}" />
+		<echo message="Current Directory: ${project::get-base-directory()}"/>
+	</target>
+
+	<target name="revert">
+		<echo message="Executing ${svn.executable} revert . -R" />
+		<exec program="${svn.executable}" commandline="revert . -R" />
+	</target>
+
+	<target name="commonassemblyinfo">
+		<echo message="MARKING THIS BUILD AS VERSION ${project.fullversion}" />
+		<delete file="${dir.solution}/CommonAssemblyInfo.cs" failonerror="false"/>
+		<asminfo output="${dir.solution}/CommonAssemblyInfo.cs" language="CSharp">
+			<imports>
+				<import namespace="System" />
+				<import namespace="System.Reflection" />
+				<import namespace="System.Runtime.InteropServices" />
+			</imports>
+			<attributes>
+				<attribute type="ComVisibleAttribute" value="false" />
+				<attribute type="AssemblyVersionAttribute" value="${project.fullversion}" />
+				<attribute type="AssemblyFileVersionAttribute" value="${project.fullversion}" />
+				<attribute type="AssemblyCopyrightAttribute" value="Copyright Â© ${company.name} ${datetime::get-year(datetime::now())}" />
+				<attribute type="AssemblyProductAttribute" value="${project::get-name()}" />
+				<attribute type="AssemblyCompanyAttribute" value="${company.name}" />
+				<attribute type="AssemblyConfigurationAttribute" value="${project.config}" />
+				<attribute type="AssemblyInformationalVersionAttribute" value="${project.fullversion}" />
+			</attributes>
+			<references>
+				<include name="System.dll" />
+			</references>
+		</asminfo>
+	</target>
+
+	<target name="compile" depends="init">
+		<echo message="Build Directory is ${dir.build}" />
+		<exec program="${framework::get-framework-directory(framework::get-target-framework())}\msbuild.exe"
+				  commandline="${file.solution} /t:Clean /p:Configuration=${project.config} /v:q" workingdir="." />
+		<exec program="${framework::get-framework-directory(framework::get-target-framework())}\msbuild.exe"
+				  commandline="${file.solution} /t:Rebuild /p:Configuration=${project.config} /v:q" workingdir="." />
+	</target>
+
+  <target name="genschema">
+    <nantschema output="${dir.solution}/nant.xsd" target-ns="http://nant.sf.net/schemas/nant.xsd"/>
+  </target>
+
+	<!-- Database change management -->
+	<target name="rebuildDatabase" depends="dropDatabase, createDatabase" />
+
+	<target name="updateDatabase">
+		<property name="action" value="Update" />
+		<call target="manageSqlDatabase" />
+	</target>
+
+	<target name="createDatabase">
+		<property name="action" value="Create" />
+		<call target="manageSqlDatabase" />
+	</target>
+
+	<target name="dropDatabase">
+		<property name="action" value="Drop" />
+		<call target="manageSqlDatabase" failonerror="false"/>
+	</target>
+
+	<target name="manageSqlDatabase">
+		<manageSqlDatabase
+			scriptDirectory="${database.script.directory}"
+			action="${action}"
+			server="${database.server}"
+			integratedAuthentication="${database.integrated}"
+			database="${database.name}"
+		/>
+
+		<if test="${action != 'Drop'}">
+			<echo message="Current Database Version: ${usdDatabaseVersion}" />
+		</if>
+
+	</target>
+</project>

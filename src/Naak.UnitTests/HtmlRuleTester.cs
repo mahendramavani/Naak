@@ -65,7 +65,7 @@ namespace Naak.UnitTests
 			builder.AppendLine("<!DOCTYPE html PUBLIC \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
 			builder.AppendLine("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
 			builder.AppendLine("  <head>");
-			builder.AppendLine("    <title>JCMS</title>");
+			builder.AppendLine("    <title>Application</title>");
 			builder.AppendLine("  </head>");
 			builder.AppendLine("  <body>");
 			builder.AppendLine("    <div id=\"container\">");
