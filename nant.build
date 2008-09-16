@@ -30,7 +30,7 @@
 	<!-- Common targets -->
 	<target name="build" depends="init, commonassemblyinfo, compile, move-for-test, test"/>
 	
-	<target name="build-and-package" depends="init, commonassemblyinfo, compile, move-for-test, test, package"/>
+	<target name="build-and-package" depends="init, commonassemblyinfo, compile, move-for-test, package"/>
 
 	<target name="test-package" depends="init, commonassemblyinfo, compile, package"/>
 
