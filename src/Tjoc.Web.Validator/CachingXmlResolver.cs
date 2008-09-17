@@ -63,7 +63,6 @@ namespace Tjoc.Web.Validator
 					}
 				}
 			}
-
 			return new MemoryStream(content);
 		}
 
