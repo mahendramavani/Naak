@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using StructureMap;
+using System.Xml;
 using Tarantino.Core.Commons.Services.Configuration;
-using Tarantino.Infrastructure;
 
 namespace Naak.HtmlRules.Impl
 {
@@ -11,7 +10,8 @@ namespace Naak.HtmlRules.Impl
 		private readonly IXmlDocumentBuilder _documentBuilder;
 		private readonly IXmlNamespaceManagerBuilder _namespaceManagerBuilder;
 
-		public HtmlRuleExecutor(IServiceLocator serviceLocator, IXmlDocumentBuilder documentBuilder, IXmlNamespaceManagerBuilder namespaceManagerBuilder)
+		public HtmlRuleExecutor(IServiceLocator serviceLocator, IXmlDocumentBuilder documentBuilder,
+		                        IXmlNamespaceManagerBuilder namespaceManagerBuilder)
 		{
 			_serviceLocator = serviceLocator;
 			_documentBuilder = documentBuilder;
@@ -22,14 +22,14 @@ namespace Naak.HtmlRules.Impl
 		{
 			var records = new List<ValidationError>();
 
-			var document = _documentBuilder.Build(html);
-			var namespaceManager = _namespaceManagerBuilder.Build(document);
+			XmlDocument document = _documentBuilder.Build(html);
+			XmlNamespaceManager namespaceManager = _namespaceManagerBuilder.Build(document);
 
-			foreach (var htmlRule in _serviceLocator.CreateAllInstances<IHtmlRule>())
+			foreach (IHtmlRule htmlRule in _serviceLocator.CreateAllInstances<IHtmlRule>())
 			{
-				var currentRecords = htmlRule.ValidateHtml(document, namespaceManager);
+				ValidationError[] currentRecords = htmlRule.ValidateHtml(document, namespaceManager);
 
-				foreach (var record in currentRecords)
+				foreach (ValidationError record in currentRecords)
 				{
 					records.Add(record);
 				}
