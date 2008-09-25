@@ -66,6 +66,7 @@
     <Compile Include="ImageInputsHaveAltTextTester.cs" />
     <Compile Include="ImagesHaveAltTextTester.cs" />
     <Compile Include="LabelsRelateToFormElementsTester.cs" />
+    <Compile Include="NoDuplicateImageAltTagsTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TablesHaveColumnHeadersTester.cs" />
     <Compile Include="ValidationErrorTester.cs" />

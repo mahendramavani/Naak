@@ -65,21 +65,21 @@ namespace Naak.HtmlRules.Impl
 
 			body.Append("</strong>");
 
-			body.AppendFormat(@"<p style=""margin-top: 18px; margin-bottom: 0px; font-size: 14pt;"">Validation took: {0}ms</p>", validationDuration.TotalMilliseconds);
+			body.AppendFormat(@"<p style=""margin-top: 12px; margin-bottom: 0px; font-size: 12pt;"">Validation took: {0}ms</p>", validationDuration.TotalMilliseconds);
 
 			if (errors.Count > 0)
 			{
-				body.Append("<ul>");
+				body.Append(@"<ul style=""font-size: 10pt;"">");
 				foreach (ValidationRecord record in errors)
 				{
-					body.Append("<li>");
+					body.Append(@"<li style=""margin-top: 5px;"">");
 					body.Append(HttpUtility.HtmlEncode(record.ToString()));
 					body.Append("</li>");
 				}
 				body.Append("</ul>");
 			}
 
-			body.Append(@"<p style=""margin-top: 18px; margin-bottom: 0px; font-size: 12pt;"">XHTML validation performed by <a href=""http://www.thejoyofcode.com/Validator_Module.aspx"">Validator Module</a>, shared generously by <a href=""mailto://josh@thejoyofcode.com"">Josh Twist</a>, <a href=""http://www.thejoyofcode.com/"">http://www.thejoyofcode.com/</a></p>");
+			body.Append(@"<p style=""margin-top: 24px; margin-bottom: 0px; font-size: 12pt;"">XHTML validation performed by <a href=""http://www.thejoyofcode.com/Validator_Module.aspx"">Validator Module</a>, shared generously by <a href=""mailto://josh@thejoyofcode.com"">Josh Twist</a>, <a href=""http://www.thejoyofcode.com/"">http://www.thejoyofcode.com/</a></p>");
 			body.Append(@"<p style=""margin-top: 9px; margin-bottom: 0px; font-size: 12pt;"">Accessibility validation performed by <a href=""http://code.google.com/p/naak"">.NET Accessibility Analysis Kit (NAAK)</a></p>");
 			body.Append("</div>");
 

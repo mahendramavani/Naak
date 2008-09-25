@@ -25,13 +25,6 @@ namespace Tjoc.Web.Validator
 			set { this["customRenderer"] = value; }
 		}
 
-		[ConfigurationProperty("proxy", IsRequired = false)]
-		public ProxySettings Proxy
-		{
-			get { return (ProxySettings) this["proxy"]; }
-			set { this["proxy"] = value; }
-		}
-
 		[ConfigurationProperty("pageExtensions", IsRequired = false)]
 		[ConfigurationCollection(typeof (ConfigurationElementCollection<StringElement>), AddItemName = "add")]
 		public ConfigurationElementCollection<StringElement> PageExtensions
@@ -55,44 +48,6 @@ namespace Tjoc.Web.Validator
 		{
 			get { return (string) this["value"]; }
 			set { this["value"] = value; }
-		}
-	}
-
-	public class ProxySettings : ConfigurationElement
-	{
-		[ConfigurationProperty("server")]
-		public string Server
-		{
-			get { return this["server"].ToString(); }
-			set { this["server"] = value; }
-		}
-
-		[ConfigurationProperty("port")]
-		public int Port
-		{
-			get { return int.Parse(this["port"].ToString()); }
-			set { this["port"] = value; }
-		}
-
-		[ConfigurationProperty("username")]
-		public string Username
-		{
-			get { return this["username"].ToString(); }
-			set { this["username"] = value; }
-		}
-
-		[ConfigurationProperty("password")]
-		public string Password
-		{
-			get { return this["password"].ToString(); }
-			set { this["password"] = value; }
-		}
-
-		[ConfigurationProperty("domain")]
-		public string Domain
-		{
-			get { return this["domain"].ToString(); }
-			set { this["domain"] = value; }
 		}
 	}
 

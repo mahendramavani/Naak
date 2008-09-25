@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
-using System.Net;
 using System.Xml;
 
 namespace Tjoc.Web.Validator
@@ -40,26 +39,15 @@ namespace Tjoc.Web.Validator
 
 					if (content == null)
 					{
-						Stream stream;
-						ProxySettings proxy = ValidatorModule.Config.Proxy;
-						if (proxy != null && !string.IsNullOrEmpty(proxy.Server))
-						{
-							var request = (HttpWebRequest) WebRequest.Create(absoluteUri);
-							request.Proxy = new WebProxy(proxy.Server, proxy.Port);
-							request.Proxy.Credentials = new NetworkCredential(proxy.Username, proxy.Password, proxy.Domain);
+						string dtdFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xhtml1-transitional.dtd");
 
-							var response = (HttpWebResponse) request.GetResponse();
-							stream = response.GetResponseStream();
-						}
-						else
+						using (Stream stream = new FileStream(dtdFile, FileMode.Open))
 						{
-							stream = (Stream) base.GetEntity(absoluteUri, role, ofObjectToReturn);
+							// Read stream into byte array.
+							content = ReadFullStream(stream);
+							// cache the content of stream.
+							_cache.Add(absoluteUri, content);
 						}
-
-						// Read stream into byte array.
-						content = ReadFullStream(stream);
-						// cache the content of stream.
-						_cache.Add(absoluteUri, content);
 					}
 				}
 			}
