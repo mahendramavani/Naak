@@ -69,7 +69,7 @@ namespace Naak.HtmlRules.Impl
 
 			if (errors.Count > 0)
 			{
-				body.Append(@"<ul style=""font-size: 10pt;"">");
+				body.Append(@"<ul id=""naakErrors"" style=""font-size: 10pt;"">");
 				foreach (ValidationRecord record in errors)
 				{
 					body.Append(@"<li style=""margin-top: 5px;"">");
