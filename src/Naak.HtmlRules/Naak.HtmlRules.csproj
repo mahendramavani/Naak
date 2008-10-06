@@ -77,6 +77,7 @@
     <Compile Include="Impl\XmlNamespaceManagerBuilder.cs" />
     <Compile Include="IXmlDocumentBuilder.cs" />
     <Compile Include="IXmlNamespaceManagerBuilder.cs" />
+    <Compile Include="NaakRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

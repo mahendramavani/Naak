@@ -1,7 +1,7 @@
 ﻿using System;
 using Naak.HtmlRules;
-using Naak.HtmlRules.Impl;
 using StructureMap;
+using Tarantino.Core;
 using Tarantino.Core.Commons.Services.Logging;
 using Tarantino.Infrastructure;
 
@@ -14,22 +14,13 @@ namespace Naak.HtmlRules
 		public void RegisterDependencies()
 		{
 			Logger.Debug(this, "Registering types with StructureMap");
-			StructureMapConfiguration.UseDefaultStructureMapConfigFile = false;
 
-			InfrastructureDependencyRegistrar.RegisterInfrastructure();
-
-			Register<IHtmlRuleExecutor, HtmlRuleExecutor>();
-			Register<IXmlDocumentBuilder, XmlDocumentBuilder>();
-			Register<IXmlNamespaceManagerBuilder, XmlNamespaceManagerBuilder>();
-
-			Register<IHtmlRule, AtLeastOneH1>();
-			Register<IHtmlRule, FormElementsHaveLabels>();
-			Register<IHtmlRule, ImageInputsHaveAltText>();
-			Register<IHtmlRule, TablesHaveColumnHeaders>();
-			Register<IHtmlRule, FieldsetsHaveLegends>();
-			Register<IHtmlRule, LabelsRelateToFormElements>();
-			Register<IHtmlRule, ImagesHaveAltText>();
-			Register<IHtmlRule, HeadingsAreLogicallyOrdered>();
+			ObjectFactory.Initialize(x => x.Scan(s =>
+			{
+				s.AssemblyContainingType<InfrastructureDependencyRegistry>();
+				s.AssemblyContainingType<CoreDependencyRegistry>();
+				s.AssemblyContainingType<NaakRegistry>();
+			}));
 		}
 
 		public T Resolve<T>()
@@ -47,17 +38,6 @@ namespace Naak.HtmlRules
 		{
 			EnsureDependenciesRegistered();
 			return ObjectFactory.GetInstance(type) != null;
-		}
-
-		private static void Register<I, C>() where C : I
-		{
-			StructureMapConfiguration.BuildInstancesOf<I>().TheDefaultIsConcreteType<C>();
-			Register<C>();
-		}
-
-		private static void Register<C>()
-		{
-			StructureMapConfiguration.BuildInstancesOf<C>().TheDefaultIsConcreteType<C>();
 		}
 
 		public static void EnsureDependenciesRegistered()
