@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml;
@@ -18,35 +17,21 @@ namespace Tjoc.Web.Validator
 
 		public Collection<ValidationRecord> Validate()
 		{
-			XmlValidatingReader reader;
-			var myschema = new XmlSchemaCollection();
+			var xrs = new XmlReaderSettings {ProhibitDtd = false, ValidationType = ValidationType.DTD};
+			xrs.ValidationEventHandler += xrs_ValidationEventHandler;
+			xrs.XmlResolver = new LocalDTDUrlResolver();
 
-			try
+			using (var sr = new StringReader(_document))
+			using (XmlReader xr = XmlReader.Create(sr, xrs))
 			{
-				//Create the XmlParserContext.
-				var context = new XmlParserContext(null, null, "", XmlSpace.None);
-
-				reader = new XmlValidatingReader(_document, XmlNodeType.Element, context);
-				reader.ValidationEventHandler += xrs_ValidationEventHandler;
-				//Add the schema.
-				string schemaFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xhtml1-transitional.xsd");
-				myschema.Add("http://www.w3.org/1999/xhtml", schemaFile);
-
-				//Set the schema type and add the schema to the reader.
-				reader.ValidationType = ValidationType.Schema;
-				reader.Schemas.Add(myschema);
-
-				while (reader.Read())
+				try
 				{
+					while (xr.Read()) ;
 				}
-			}
-			catch (XmlException xmlExp)
-			{
-				_records.Add(new ValidationRecord(xmlExp));
-			}
-			catch (Exception exc)
-			{
-				_records.Add(new ValidationRecord(exc.Message));
+				catch (XmlException xmlExc)
+				{
+					_records.Add(new ValidationRecord(xmlExc));
+				}
 			}
 
 			return _records;

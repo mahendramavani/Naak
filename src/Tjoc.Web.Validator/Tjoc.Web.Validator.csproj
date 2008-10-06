@@ -54,6 +54,7 @@
     <Compile Include="InlineCommentRenderer.cs" />
     <Compile Include="InlineHtmlRenderer.cs" />
     <Compile Include="IValidationRenderer.cs" />
+    <Compile Include="LocalDTDUrlResolver.cs" />
     <Compile Include="ValidationRecord.cs" />
     <Compile Include="ValidatorConfigHandler.cs" />
     <Compile Include="ValidatorModule.cs" />

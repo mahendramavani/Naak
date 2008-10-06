@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.ExampleUI", "Naak.Exam
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{75F7C5E9-A0B7-4AC0-9013-71EB165458A7}"
 	ProjectSection(SolutionItems) = preProject
-		..\common.build = ..\common.build
-		..\nant.build = ..\nant.build
 		validator_module_license.txt = validator_module_license.txt
 	EndProjectSection
 EndProject
