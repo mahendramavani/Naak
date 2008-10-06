@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CachingXmlResolver.cs" />
     <Compile Include="CaptureStream.cs" />
     <Compile Include="ConfigurationElementCollection.cs" />
     <Compile Include="FloatingHtmlRenderer.cs" />
@@ -55,6 +54,7 @@
     <Compile Include="InlineCommentRenderer.cs" />
     <Compile Include="InlineHtmlRenderer.cs" />
     <Compile Include="IValidationRenderer.cs" />
+    <Compile Include="ValidationRecord.cs" />
     <Compile Include="ValidatorConfigHandler.cs" />
     <Compile Include="ValidatorModule.cs" />
     <Compile Include="XhtmlValidator.cs" />
