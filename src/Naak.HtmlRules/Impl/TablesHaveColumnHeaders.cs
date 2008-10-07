@@ -11,17 +11,21 @@ namespace Naak.HtmlRules.Impl
 		{
 			var records = new List<ValidationError>();
 
-			XmlNodeList nodes = document.SelectNodes("//x:table[x:tr[1]/x:td]", namespaceManager);
+			XmlNodeList nodes = document.SelectNodes("//x:table", namespaceManager);
 
-			foreach (XmlNode node in nodes)
-			{
-				string message =
-					string.Format(
-						"Layout table detected - if the table is a data table, use TH for the column headers. Otherwise, use CSS for layout: {0}",
-						node.OuterXml);
-				records.Add(new ValidationError(message));
-			}
-
+			if (nodes != null)
+				foreach (XmlNode node in nodes)
+				{
+					XmlNodeList tableHeaders = node.SelectNodes("x:tr/x:th", namespaceManager);
+					if (tableHeaders.Count < 1)
+					{
+						string message =
+							string.Format(
+								"Layout table detected - if the table is a data table, use TH for the column or row headers. Otherwise, use CSS for layout: {0}",
+								node.OuterXml);
+						records.Add(new ValidationError(message));
+					}
+				}
 			return records.ToArray();
 		}
 	}

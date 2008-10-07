@@ -13,11 +13,12 @@ namespace Naak.HtmlRules.Impl
 
 			XmlNodeList imageButtonsWithoutAlt = document.SelectNodes(formElementXPath, namespaceManager);
 
-			foreach (XmlNode imageButton in imageButtonsWithoutAlt)
-			{
-				string message = string.Format("Image missing alt text: {0}", imageButton.OuterXml);
-				records.Add(new ValidationError(message));
-			}
+			if (imageButtonsWithoutAlt != null)
+				foreach (XmlNode imageButton in imageButtonsWithoutAlt)
+				{
+					string message = string.Format("Image missing alt text: {0}", imageButton.OuterXml);
+					records.Add(new ValidationError(message));
+				}
 
 			return records.ToArray();
 		}

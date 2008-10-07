@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3194A851-8F32-4EAA-9134-F6EE3C0FAF82}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtLeastOneH1Tester.cs" />
+    <Compile Include="ImagesDontHaveDuplicateAltTextTester.cs" />
     <Compile Include="FieldsetsHaveLegendsTester.cs" />
     <Compile Include="FormElementsHaveLabelsTester.cs" />
     <Compile Include="HeadingsAreLogicallyOrderedTester.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="ImageInputsHaveAltTextTester.cs" />
     <Compile Include="ImagesHaveAltTextTester.cs" />
     <Compile Include="LabelsRelateToFormElementsTester.cs" />
-    <Compile Include="NoDuplicateImageAltTagsTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TablesHaveColumnHeadersTester.cs" />
     <Compile Include="ValidationErrorTester.cs" />

@@ -21,6 +21,7 @@ namespace Naak.HtmlRules
 			ForRequestedType<IHtmlRule>().AddConcreteType<FieldsetsHaveLegends>();
 			ForRequestedType<IHtmlRule>().AddConcreteType<LabelsRelateToFormElements>();
 			ForRequestedType<IHtmlRule>().AddConcreteType<ImagesHaveAltText>();
+			ForRequestedType<IHtmlRule>().AddConcreteType<ImagesDontHaveDuplicateAltText>();
 			ForRequestedType<IHtmlRule>().AddConcreteType<HeadingsAreLogicallyOrdered>();
 		}
 	}
