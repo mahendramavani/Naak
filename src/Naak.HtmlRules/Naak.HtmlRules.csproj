@@ -63,7 +63,7 @@
     <Compile Include="IHtmlRuleExecutor.cs" />
     <Compile Include="Impl\AccessibilityRenderer.cs" />
     <Compile Include="Impl\AtLeastOneH1.cs" />
-    <Compile Include="Impl\LinksHaveUniqueText.cs" />
+    <Compile Include="Impl\LinksHaveUniqueTextUrlCombo.cs" />
     <Compile Include="Impl\ImagesDontHaveDuplicateAltText.cs" />
     <Compile Include="Impl\NoDuplicateImageAltTags.cs" />
     <Compile Include="Impl\FieldsetsHaveLegends.cs" />
