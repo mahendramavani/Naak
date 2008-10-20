@@ -10,14 +10,17 @@ namespace Naak.UnitTests
 	public class LinksHaveUniqueTextUrlComboTester : HtmlRuleTester
 	{
 		[Test]
-		public void Identifies_images_tag_wtih_duplicate_text()
+		public void Identifies_link_tags_wtih_duplicate_text_and_different_urls()
 		{
 			var bodyHtml = new StringBuilder();
+			bodyHtml.Append(@"<a href="""" >TestLink</a>");
+			bodyHtml.Append(@"<a name=""errorcase"">TestLink</a>");
 			bodyHtml.Append(@"<a href=""/home"">Test</a>"); 
 			bodyHtml.Append(@"<a href=""/home"">TestLink</a>"); 
 			bodyHtml.Append(@"<a href=""/home"">TestLink</a>");
 			bodyHtml.Append(@"<a href=""/home2"">TestLink</a>");
 			bodyHtml.Append(@"<P/>");
+			
 
 			ExecuteTest(new LinksHaveUniqueTextUrlCombo(), bodyHtml.ToString());
 			Assert.That(ErrorCount, Is.EqualTo(1));
