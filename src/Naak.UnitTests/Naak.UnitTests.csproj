@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtLeastOneH1Tester.cs" />
-    <Compile Include="LinksHaveUniqueTextUrlComboTester.cs" />
+    <Compile Include="ContextOfLinkTextMustMakeSenseTester.cs" />
     <Compile Include="ImagesDontHaveDuplicateAltTextTester.cs" />
     <Compile Include="FieldsetsHaveLegendsTester.cs" />
     <Compile Include="FormElementsHaveLabelsTester.cs" />

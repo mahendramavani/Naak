@@ -22,7 +22,7 @@ namespace Naak.HtmlRules
 			ForRequestedType<IHtmlRule>().AddConcreteType<LabelsRelateToFormElements>();
 			ForRequestedType<IHtmlRule>().AddConcreteType<ImagesHaveAltText>();
 			ForRequestedType<IHtmlRule>().AddConcreteType<ImagesDontHaveDuplicateAltText>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<LinksHaveUniqueTextUrlCombo>();
+			ForRequestedType<IHtmlRule>().AddConcreteType<ContextOfLinkTextMustMakeSense>();
 			ForRequestedType<IHtmlRule>().AddConcreteType<HeadingsAreLogicallyOrdered>();
 		}
 	}
