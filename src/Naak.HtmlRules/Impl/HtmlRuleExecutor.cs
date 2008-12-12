@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using Tarantino.Core.Commons.Services.Configuration;
@@ -22,17 +23,24 @@ namespace Naak.HtmlRules.Impl
 		{
 			var records = new List<ValidationError>();
 
-			XmlDocument document = _documentBuilder.Build(html);
-			XmlNamespaceManager namespaceManager = _namespaceManagerBuilder.Build(document);
-
-			foreach (IHtmlRule htmlRule in _serviceLocator.CreateAllInstances<IHtmlRule>())
+			try
 			{
-				ValidationError[] currentRecords = htmlRule.ValidateHtml(document, namespaceManager);
+				XmlDocument document = _documentBuilder.Build(html);
+				XmlNamespaceManager namespaceManager = _namespaceManagerBuilder.Build(document);
 
-				foreach (ValidationError record in currentRecords)
+				foreach (IHtmlRule htmlRule in _serviceLocator.CreateAllInstances<IHtmlRule>())
 				{
-					records.Add(record);
+					ValidationError[] currentRecords = htmlRule.ValidateHtml(document, namespaceManager);
+
+					foreach (ValidationError record in currentRecords)
+					{
+						records.Add(record);
+					}
 				}
+			}
+			catch (Exception exc)
+			{
+				records.Add(new ValidationError(exc.Message));
 			}
 
 			return records.ToArray();
