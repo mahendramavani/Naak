@@ -69,7 +69,9 @@
 			</fileset>
 		</copy>
 
-		<exec program="lib\tarantino\Subversion\svn.exe" workingdir="." commandline="up LatestVersion --username ${svn.username} --password ${svn.password}" verbose="true" />
+		<!--
+		<exec program="lib\tarantino\Subversion\svn.exe" workingdir="." commandline="up LatestVersion -username ${svn.username} -password ${svn.password}" verbose="true" />
+		-->
 
 		<delete file="${package.file.name}" />
 		<zip zipfile="${package.file.name}">

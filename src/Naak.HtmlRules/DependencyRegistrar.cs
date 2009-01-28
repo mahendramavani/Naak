@@ -20,6 +20,7 @@ namespace Naak.HtmlRules
 				s.AssemblyContainingType<InfrastructureDependencyRegistry>();
 				s.AssemblyContainingType<CoreDependencyRegistry>();
 				s.AssemblyContainingType<NaakRegistry>();
+				s.LookForRegistries();
 			}));
 		}
 

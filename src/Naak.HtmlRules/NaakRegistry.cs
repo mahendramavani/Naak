@@ -1,6 +1,5 @@
 using Naak.HtmlRules.Impl;
 using StructureMap.Configuration.DSL;
-using StructureMap.Graph;
 
 namespace Naak.HtmlRules
 {
@@ -10,8 +9,8 @@ namespace Naak.HtmlRules
 		{
 			Scan(x =>
 			     	{
-			     		x.AssemblyContainingType(GetType());
-			     		x.With<DefaultConventionScanner>();
+			     		x.TheCallingAssembly();
+			     		x.WithDefaultConventions();
 			     	});
 
 			ForRequestedType<IHtmlRule>().AddConcreteType<AtLeastOneH1>();

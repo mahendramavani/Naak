@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisibleAttribute(false)]
 [assembly: AssemblyVersionAttribute("1.0.9999.0")]
 [assembly: AssemblyFileVersionAttribute("1.0.9999.0")]
-[assembly: AssemblyCopyrightAttribute("Copyright © .NET Accessibility Analysis Kit (NAAK) 2008")]
+[assembly: AssemblyCopyrightAttribute("Copyright © .NET Accessibility Analysis Kit (NAAK) 2009")]
 [assembly: AssemblyProductAttribute("Naak")]
 [assembly: AssemblyCompanyAttribute(".NET Accessibility Analysis Kit (NAAK)")]
 [assembly: AssemblyConfigurationAttribute("release")]

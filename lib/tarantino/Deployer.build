@@ -7,7 +7,7 @@
 
 		<property name="defined.revision" value="${revision}" />
 
-		<property name="svnArgs" value="--username ${username} --password ${password} --non-interactive" />
+		<property name="svnArgs" value="--username ${username} --password ${password} --non-interactive --no-auth-cache" />
 
 		<if test="${defined.revision==''}">
 			<exec program="Subversion/svn.exe" commandline="info ${url} ${svnArgs} --xml" output="svninfo.xml" append="false" verbose="false"/>
