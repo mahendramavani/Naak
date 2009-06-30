@@ -1,9 +1,7 @@
 ﻿using System;
 using Naak.HtmlRules;
+using Naak.HtmlRules.Impl;
 using StructureMap;
-using Tarantino.Core;
-using Tarantino.Core.Commons.Services.Logging;
-using Tarantino.Infrastructure;
 
 namespace Naak.HtmlRules
 {
@@ -17,8 +15,6 @@ namespace Naak.HtmlRules
 
 			ObjectFactory.Initialize(x => x.Scan(s =>
 			{
-				s.AssemblyContainingType<InfrastructureDependencyRegistry>();
-				s.AssemblyContainingType<CoreDependencyRegistry>();
 				s.AssemblyContainingType<NaakRegistry>();
 				s.LookForRegistries();
 			}));

@@ -4,7 +4,6 @@ using Naak.HtmlRules.Impl;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
 using Rhino.Mocks;
-using Tarantino.Core.Commons.Services.Configuration;
 
 namespace Naak.UnitTests
 {

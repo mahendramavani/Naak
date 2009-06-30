@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
-using Tarantino.Core.Commons.Services.Configuration;
 
 namespace Naak.HtmlRules.Impl
 {

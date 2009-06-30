@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\nunit\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\structuremap\StructureMap.dll</HintPath>
@@ -48,14 +52,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tarantino.Core, Version=1.0.99.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\tarantino\Tarantino.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Tarantino.Infrastructure, Version=1.0.99.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\tarantino\Tarantino.Infrastructure.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyRegistrar.cs" />
@@ -65,6 +61,7 @@
     <Compile Include="Impl\AtLeastOneH1.cs" />
     <Compile Include="Impl\ContextOfLinkTextMustMakeSense.cs" />
     <Compile Include="Impl\ImagesDontHaveDuplicateAltText.cs" />
+    <Compile Include="Impl\Logger.cs" />
     <Compile Include="Impl\NoDuplicateImageAltTags.cs" />
     <Compile Include="Impl\FieldsetsHaveLegends.cs" />
     <Compile Include="Impl\FormElementsHaveLabels.cs" />
@@ -73,10 +70,12 @@
     <Compile Include="Impl\ImageInputsHaveAltText.cs" />
     <Compile Include="Impl\ImagesHaveAltText.cs" />
     <Compile Include="Impl\LabelsRelateToFormElements.cs" />
+    <Compile Include="Impl\ServiceLocator.cs" />
     <Compile Include="Impl\TablesHaveColumnHeaders.cs" />
     <Compile Include="Impl\ValidationError.cs" />
     <Compile Include="Impl\XmlDocumentBuilder.cs" />
     <Compile Include="Impl\XmlNamespaceManagerBuilder.cs" />
+    <Compile Include="IServiceLocator.cs" />
     <Compile Include="IXmlDocumentBuilder.cs" />
     <Compile Include="IXmlNamespaceManagerBuilder.cs" />
     <Compile Include="NaakRegistry.cs" />
