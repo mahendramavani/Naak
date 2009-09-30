@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Xml;
-using Naak.HtmlRules;
-using Naak.HtmlRules.Impl;
 
 namespace Naak.HtmlRules.Impl
 {
@@ -17,7 +15,8 @@ namespace Naak.HtmlRules.Impl
 				foreach (XmlNode node in nodes)
 				{
 					XmlNodeList tableHeaders = node.SelectNodes("x:tr/x:th", namespaceManager);
-					if (tableHeaders.Count < 1)
+					XmlNodeList tableHeadersWithThead = node.SelectNodes("x:thead/x:tr/x:th", namespaceManager);
+                    if (tableHeaders.Count < 1 && tableHeadersWithThead.Count < 1)
 					{
 						string message =
 							string.Format(

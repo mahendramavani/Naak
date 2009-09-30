@@ -60,5 +60,24 @@ namespace Naak.UnitTests
 			Assert.That(ContainsError(@"Layout table detected - if the table is a data table, use TH for the column or row headers. Otherwise, use CSS for layout: <table xmlns=""http://www.w3.org/1999/xhtml""><tr><td>Value 1</td></tr><tr><td>Value 2</td></tr></table>"));
 		}
 
+        [Test]
+        public void Should_allow_thead_and_tbody_as_valid_child_of_table()
+        {
+            var bodyHtml = new StringBuilder();
+            bodyHtml.Append(@"<table>");
+            bodyHtml.Append(@"  <thead>");
+            bodyHtml.Append(@"      <tr><th>Row 1</th><td>Value 1</td></tr>");
+            bodyHtml.Append(@"      <tr><th>Row 2</th><td>Value 2</td></tr>");
+            bodyHtml.Append(@"  </thead>");
+            bodyHtml.Append(@"  <tbody>");
+            bodyHtml.Append(@"      <tr><td>Row 1</td><td>Value 1</td></tr>");
+            bodyHtml.Append(@"      <tr><td>Row 2</td><td>Value 2</td></tr>");
+            bodyHtml.Append(@"  </tbody>");
+            bodyHtml.Append(@"</table>");
+
+            ExecuteTest(new TablesHaveColumnHeaders(), bodyHtml.ToString());
+
+            Assert.That(ErrorCount, Is.EqualTo(0));
+        }
 	}
 }
