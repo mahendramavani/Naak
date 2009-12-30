@@ -6,14 +6,14 @@ namespace Naak.HtmlRules.Impl
 {
 	public class HtmlRuleExecutor : IHtmlRuleExecutor
 	{
-		private readonly IServiceLocator _serviceLocator;
 		private readonly IXmlDocumentBuilder _documentBuilder;
 		private readonly IXmlNamespaceManagerBuilder _namespaceManagerBuilder;
+		private readonly IRuleRepository _repository;
 
-		public HtmlRuleExecutor(IServiceLocator serviceLocator, IXmlDocumentBuilder documentBuilder,
+		public HtmlRuleExecutor(IRuleRepository repository, IXmlDocumentBuilder documentBuilder,
 		                        IXmlNamespaceManagerBuilder namespaceManagerBuilder)
 		{
-			_serviceLocator = serviceLocator;
+			_repository = repository;
 			_documentBuilder = documentBuilder;
 			_namespaceManagerBuilder = namespaceManagerBuilder;
 		}
@@ -27,11 +27,11 @@ namespace Naak.HtmlRules.Impl
 				XmlDocument document = _documentBuilder.Build(html);
 				XmlNamespaceManager namespaceManager = _namespaceManagerBuilder.Build(document);
 
-				foreach (IHtmlRule htmlRule in _serviceLocator.CreateAllInstances<IHtmlRule>())
+				foreach (var htmlRule in _repository.GetNaakRulesToExecute())
 				{
 					ValidationError[] currentRecords = htmlRule.ValidateHtml(document, namespaceManager);
 
-					foreach (ValidationError record in currentRecords)
+					foreach (var record in currentRecords)
 					{
 						records.Add(record);
 					}

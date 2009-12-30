@@ -6,6 +6,7 @@ using Naak.HtmlRules;
 using Naak.HtmlRules.Impl;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
+using Tjoc.Web.Validator;
 
 namespace Naak.UnitTests
 {
@@ -80,6 +81,7 @@ namespace Naak.UnitTests
 			var html = replacer.Text;
 
 			var document = new XmlDocument();
+			document.XmlResolver = new LocalDTDUrlResolver();
 			document.LoadXml(html);
 			return document;
 		}

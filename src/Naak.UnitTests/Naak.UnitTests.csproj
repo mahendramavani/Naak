@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3194A851-8F32-4EAA-9134-F6EE3C0FAF82}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -74,6 +74,10 @@
     <ProjectReference Include="..\Naak.HtmlRules\Naak.HtmlRules.csproj">
       <Project>{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}</Project>
       <Name>Naak.HtmlRules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tjoc.Web.Validator\Tjoc.Web.Validator.csproj">
+      <Project>{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}</Project>
+      <Name>Tjoc.Web.Validator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

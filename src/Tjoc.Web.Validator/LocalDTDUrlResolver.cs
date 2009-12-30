@@ -12,7 +12,7 @@ namespace Tjoc.Web.Validator
 			return new MemoryStream(File.ReadAllBytes(dtdFile));
 		}
 
-		public override Uri  ResolveUri(Uri baseUri, string relativeUri)
+		public override Uri ResolveUri(Uri baseUri, string relativeUri)
 		{
 			string dtdFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xhtml1-transitional.dtd");
 			return new Uri(dtdFile);

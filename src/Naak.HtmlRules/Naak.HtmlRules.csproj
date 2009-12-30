@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -40,6 +40,7 @@
       <HintPath>..\..\lib\structuremap\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -70,11 +71,15 @@
     <Compile Include="Impl\ImageInputsHaveAltText.cs" />
     <Compile Include="Impl\ImagesHaveAltText.cs" />
     <Compile Include="Impl\LabelsRelateToFormElements.cs" />
+    <Compile Include="Impl\RuleConfiguration.cs" />
+    <Compile Include="Impl\RuleRepository.cs" />
     <Compile Include="Impl\ServiceLocator.cs" />
     <Compile Include="Impl\TablesHaveColumnHeaders.cs" />
     <Compile Include="Impl\ValidationError.cs" />
     <Compile Include="Impl\XmlDocumentBuilder.cs" />
     <Compile Include="Impl\XmlNamespaceManagerBuilder.cs" />
+    <Compile Include="IRuleConfiguration.cs" />
+    <Compile Include="IRuleRepository.cs" />
     <Compile Include="IServiceLocator.cs" />
     <Compile Include="IXmlDocumentBuilder.cs" />
     <Compile Include="IXmlNamespaceManagerBuilder.cs" />
@@ -92,6 +97,11 @@
       <Link>validator_module_license.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="xhtml1-transitional.dtd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
