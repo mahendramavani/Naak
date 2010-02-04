@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace Tjoc.Web.Validator
@@ -19,6 +20,7 @@ namespace Tjoc.Web.Validator
 		private bool _validExtension;
 		// setup the appropriate implementation of IValidationRenderer
 		private IValidationRenderer _renderer;
+        private static readonly Regex _fileExt = new Regex(@"\..*$", RegexOptions.Compiled);
 
 		internal static ValidatorConfigHandler Config
 		{
@@ -122,11 +124,18 @@ namespace Tjoc.Web.Validator
 		private bool IsValidExtenstion()
 		{
 			bool validExtension = false;
+		    var match = _fileExt.Match(_application.Request.Path);
+		    var fileExtension = string.Empty;
+
+            if (match.Success)
+            {
+                fileExtension = match.Value;
+            }
 
 			foreach (StringElement element in Config.PageExtensions)
 			{
 				if (element.Key != null &&
-				    _application.Request.Path.EndsWith(element.Key, true, CultureInfo.InvariantCulture))
+                    string.Compare(fileExtension, element.Key, true, CultureInfo.InvariantCulture) == 0)
 				{
 					validExtension = true;
 					break;
