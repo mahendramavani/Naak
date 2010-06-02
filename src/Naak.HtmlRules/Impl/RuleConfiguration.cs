@@ -7,13 +7,13 @@ namespace Naak.HtmlRules.Impl
 	{
 		public bool ShouldRuleBeIncludedBasedOnConfiguration(IHtmlRule rule)
 		{
-			string ruleName = rule.GetType().Name.Trim();
+			string ruleName = rule.GetType().Name;
 
 			string appSetting = ConfigurationManager.AppSettings["NaakRules"];
 			string[] configuredRules = appSetting == null ? new string[0] : appSetting.Split(',');
 
 			bool ruleConfigurationNotSpecified = configuredRules.Length == 0;
-			bool includeRule = ruleConfigurationNotSpecified || configuredRules.Any(s => s == ruleName);
+			bool includeRule = ruleConfigurationNotSpecified || configuredRules.Any(s => s.Trim() == ruleName);
 
 			return includeRule;
 		}
