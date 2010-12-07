@@ -52,7 +52,7 @@ namespace Naak.HtmlRules.Impl
 				body.Append("background-color:#cfc;border:2px solid green;'>");
 			}
 
-			body.Append("<strong>Americans with Disabilities Act, Section 508 Validation ");
+			body.Append("<strong>US Rehabilitation Act, Section 508 Validation ");
 
 			if (errors.Count > 0)
 			{

@@ -5,24 +5,24 @@ namespace Naak.HtmlRules
 {
 	public class NaakRegistry : Registry
 	{
-		protected override void configure()
-		{
-			Scan(x =>
-			     	{
-			     		x.TheCallingAssembly();
-			     		x.WithDefaultConventions();
-			     	});
+	    public NaakRegistry()
+	    {
+            Scan(scanner =>
+            {
+                scanner.TheCallingAssembly();
+                scanner.WithDefaultConventions();
+            });
 
-			ForRequestedType<IHtmlRule>().AddConcreteType<AtLeastOneH1>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<FormElementsHaveLabels>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<ImageInputsHaveAltText>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<TablesHaveColumnHeaders>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<FieldsetsHaveLegends>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<LabelsRelateToFormElements>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<ImagesHaveAltText>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<ImagesDontHaveDuplicateAltText>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<ContextOfLinkTextMustMakeSense>();
-			ForRequestedType<IHtmlRule>().AddConcreteType<HeadingsAreLogicallyOrdered>();
-		}
+            For<IHtmlRule>().Add<AtLeastOneH1>();
+            For<IHtmlRule>().Add<FormElementsHaveLabels>();
+            For<IHtmlRule>().Add<ImageInputsHaveAltText>();
+            For<IHtmlRule>().Add<TablesHaveColumnHeaders>();
+            For<IHtmlRule>().Add<FieldsetsHaveLegends>();
+            For<IHtmlRule>().Add<LabelsRelateToFormElements>();
+            For<IHtmlRule>().Add<ImagesHaveAltText>();
+            For<IHtmlRule>().Add<ImagesDontHaveDuplicateAltText>();
+            For<IHtmlRule>().Add<ContextOfLinkTextMustMakeSense>();
+            For<IHtmlRule>().Add<HeadingsAreLogicallyOrdered>();
+        }
 	}
 }

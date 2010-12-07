@@ -1,6 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{75F7C5E9-A0B7-4AC0-9013-71EB165458A7}"
+	ProjectSection(SolutionItems) = preProject
+		validator_module_license.txt = validator_module_license.txt
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tjoc.Web.Validator", "Tjoc.Web.Validator\Tjoc.Web.Validator.csproj", "{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.HtmlRules", "Naak.HtmlRules\Naak.HtmlRules.csproj", "{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}"
@@ -9,10 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.UnitTests", "Naak.Unit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.ExampleUI", "Naak.ExampleUI\Naak.ExampleUI.csproj", "{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{75F7C5E9-A0B7-4AC0-9013-71EB165458A7}"
-	ProjectSection(SolutionItems) = preProject
-		validator_module_license.txt = validator_module_license.txt
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naak.ExampleMvcUI", "Naak.ExampleMvcUI\Naak.ExampleMvcUI.csproj", "{9BE0EB25-0E1B-4983-9485-ECA8099CE5D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F933D05-B282-4C59-B5DD-DDF6DB5A86CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE0EB25-0E1B-4983-9485-ECA8099CE5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE0EB25-0E1B-4983-9485-ECA8099CE5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE0EB25-0E1B-4983-9485-ECA8099CE5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE0EB25-0E1B-4983-9485-ECA8099CE5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

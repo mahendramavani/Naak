@@ -20,7 +20,7 @@ namespace Tjoc.Web.Validator
 		private bool _validExtension;
 		// setup the appropriate implementation of IValidationRenderer
 		private IValidationRenderer _renderer;
-        private static readonly Regex _fileExt = new Regex(@"\..*$", RegexOptions.Compiled);
+        private static readonly Regex _fileExt = new Regex(@"\..+$", RegexOptions.Compiled);
 
 		internal static ValidatorConfigHandler Config
 		{
@@ -124,7 +124,8 @@ namespace Tjoc.Web.Validator
 		private bool IsValidExtenstion()
 		{
 			bool validExtension = false;
-		    var match = _fileExt.Match(_application.Request.Path);
+
+            var match = _fileExt.Match(_application.Request.Path);
 		    var fileExtension = string.Empty;
 
             if (match.Success)
