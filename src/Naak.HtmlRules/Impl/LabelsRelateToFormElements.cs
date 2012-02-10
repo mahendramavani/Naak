@@ -1,20 +1,21 @@
 using System.Collections.Generic;
 using System.Xml;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
 	public class LabelsRelateToFormElements : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document)
+		public ValidationError[] ValidateHtml(HtmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			XmlNodeList labels = document.SelectNodes("//label");
+			var labels = document.SelectNodes("//label");
 
-			foreach (XmlNode label in labels)
+			foreach (var label in labels)
 			{
-				XmlAttribute forAttribute = label.Attributes["for"];
-				XmlNode relatedElement = null;
+				var forAttribute = label.Attributes["for"];
+				HtmlNode relatedElement = null;
 
 				if (forAttribute != null)
 				{
@@ -38,7 +39,7 @@ namespace Naak.HtmlRules.Impl
 
 				if (relatedElement == null)
 				{
-					string message = string.Format("Label does not relate to a form control: {0}", label.OuterXml);
+					string message = string.Format("Label does not relate to a form control: {0}", label.OuterHtml);
 					records.Add(new ValidationError(message));
 				}
 			}

@@ -1,12 +1,11 @@
 using System;
 using System.Linq;
 using System.Text;
-using System.Xml;
+using HtmlAgilityPack;
 using Naak.HtmlRules;
 using Naak.HtmlRules.Impl;
 using NUnit.Framework;
 using NUnit.Framework.SyntaxHelpers;
-using Tjoc.Web.Validator;
 
 namespace Naak.UnitTests
 {
@@ -24,7 +23,7 @@ namespace Naak.UnitTests
 
 		protected void ExecuteTest<T>(T rule, string bodyHtml) where T: IHtmlRule
 		{
-			XmlDocument document = GetDocument(bodyHtml);
+			var document = GetDocument(bodyHtml);
 
 			_errors = rule.ValidateHtml(document);
 		}
@@ -42,7 +41,7 @@ namespace Naak.UnitTests
 
 		protected static void AssertHtmlRuleFails(IHtmlRule htmlRule, string bodyHtml, int lineNumber, int linePosition, string message)
 		{
-			XmlDocument document = GetDocument(bodyHtml);
+			var document = GetDocument(bodyHtml);
 
 			IHtmlRule rule = htmlRule;
 			var records = rule.ValidateHtml(document);
@@ -51,7 +50,7 @@ namespace Naak.UnitTests
 			Assert.That(records[0].Message, Is.EqualTo(message));
 		}
 
-		private static XmlDocument GetDocument(string body)
+		private static HtmlDocument GetDocument(string body)
 		{
 			var builder = new StringBuilder();
 			builder.AppendLine("<!DOCTYPE html PUBLIC \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
@@ -71,9 +70,8 @@ namespace Naak.UnitTests
 			replacer.Replace("BODY", body);
 			var html = replacer.Text;
 
-			var document = new XmlDocument();
-			document.XmlResolver = new LocalDTDUrlResolver();
-			document.LoadXml(html);
+			var document = new HtmlDocument();
+			document.LoadHtml(html);
 			return document;
 		}
 	}

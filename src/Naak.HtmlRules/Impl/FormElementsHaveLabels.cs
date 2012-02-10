@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
 	public class FormElementsHaveLabels : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document)
+		public ValidationError[] ValidateHtml(HtmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
@@ -24,11 +25,11 @@ namespace Naak.HtmlRules.Impl
 
 				var elements = document.SelectNodes(formElementXPath);
 
-				foreach (XmlNode element in elements)
+				foreach (var element in elements)
 				{
 					var idAttribute = element.Attributes["id"];
 
-					XmlNode correspondingLabel = null;
+					HtmlNode correspondingLabel = null;
 
 					if (idAttribute != null)
 					{
@@ -40,7 +41,7 @@ namespace Naak.HtmlRules.Impl
 
 					if (correspondingLabel == null)
 					{
-						var message = string.Format("{0} missing correpsonding label: {1}", definition.Description, element.OuterXml);
+						var message = string.Format("{0} missing correpsonding label: {1}", definition.Description, element.OuterHtml);
 						records.Add(new ValidationError(message));
 					}
 				}

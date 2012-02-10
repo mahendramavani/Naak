@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Linq;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
 	public class NoDuplicateImageAltTags : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document)
+		public ValidationError[] ValidateHtml(HtmlDocument document)
 		{
 			var records = new List<ValidationError>();
 

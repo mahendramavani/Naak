@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
@@ -42,7 +42,7 @@ namespace Naak.HtmlRules.Impl
 			}
 		}
 
-		public ValidationError[] ValidateHtml(XmlDocument document)
+		public ValidationError[] ValidateHtml(HtmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
@@ -52,7 +52,7 @@ namespace Naak.HtmlRules.Impl
 			var linksNodeList = document.SelectNodes(formElementXPath);
 
 			if (linksNodeList != null)
-				foreach (XmlNode currentNode in linksNodeList)
+				foreach (var currentNode in linksNodeList)
 				{
 					var urlAttribute = currentNode.Attributes["href"];
 					var titleAttribute = currentNode.Attributes["title"];
@@ -77,7 +77,7 @@ namespace Naak.HtmlRules.Impl
 							new ValidationError(
 								string.Format(
 									"Link text does not make sense out of context,link is the same as another link on the page, but links to a different location: {0}",
-									currentNode.OuterXml)));
+									currentNode.OuterHtml)));
 					}
 				}
 

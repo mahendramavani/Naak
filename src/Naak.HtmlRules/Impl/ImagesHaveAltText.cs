@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using System.Xml;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
 	public class ImagesHaveAltText : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document)
+		public ValidationError[] ValidateHtml(HtmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
 			string formElementXPath = "//img[not(@alt) or @alt='']";
 
-			XmlNodeList imageButtonsWithoutAlt = document.SelectNodes(formElementXPath);
+			var imageButtonsWithoutAlt = document.SelectNodes(formElementXPath);
 
 			if (imageButtonsWithoutAlt != null)
-				foreach (XmlNode imageButton in imageButtonsWithoutAlt)
+				foreach (var imageButton in imageButtonsWithoutAlt)
 				{
-					string message = string.Format("Image missing alt text: {0}", imageButton.OuterXml);
+					string message = string.Format("Image missing alt text: {0}", imageButton.OuterHtml);
 					records.Add(new ValidationError(message));
 				}
 

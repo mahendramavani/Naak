@@ -1,21 +1,20 @@
-using System;
 using System.Collections.Generic;
-using System.Xml;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
 	public class FieldsetsHaveLegends : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document)
+		public ValidationError[] ValidateHtml(HtmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			XmlNodeList nodes = document.SelectNodes("//fieldset[not(legend) or legend[not(text())]]");
+			var nodes = document.SelectNodes("//fieldset[not(legend) or legend[not(text())]]");
 
-			foreach (XmlNode node in nodes)
+			foreach (var node in nodes)
 			{
-				string message = string.Format("Fieldset must have a legend: {0}", node.OuterXml);
-				records.Add(new ValidationError(message));
+				string message = string.Format("Fieldset must have a legend: {0}", node.OuterHtml);
+				records.Add(new ValidationError(message, node.Line, node.LinePosition));
 			}
 
 			return records.ToArray();

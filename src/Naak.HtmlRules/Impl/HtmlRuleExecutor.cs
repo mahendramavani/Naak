@@ -1,18 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Xml;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
 	public class HtmlRuleExecutor : IHtmlRuleExecutor
 	{
-		private readonly IXmlDocumentBuilder _documentBuilder;
 	    private readonly IRuleRepository _repository;
 
-		public HtmlRuleExecutor(IRuleRepository repository, IXmlDocumentBuilder documentBuilder)
+		public HtmlRuleExecutor(IRuleRepository repository)
 		{
 			_repository = repository;
-			_documentBuilder = documentBuilder;
 		}
 
 		public ValidationError[] GetAccessibilityErrors(string html)
@@ -21,7 +19,7 @@ namespace Naak.HtmlRules.Impl
 
 			try
 			{
-				XmlDocument document = _documentBuilder.Build(html);
+				var document = BuildDocument(html);
 
 				foreach (var htmlRule in _repository.GetNaakRulesToExecute())
 				{
@@ -40,5 +38,12 @@ namespace Naak.HtmlRules.Impl
 
 			return records.ToArray();
 		}
+
+	    private static HtmlDocument BuildDocument(string html)
+	    {
+            var document = new HtmlDocument();
+            document.LoadHtml(html);
+            return document;
+        }
 	}
 }

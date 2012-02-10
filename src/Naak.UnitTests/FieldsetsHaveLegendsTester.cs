@@ -31,9 +31,6 @@ namespace Naak.UnitTests
 			ExecuteTest(new FieldsetsHaveLegends(), html.ToString());
 
 			Assert.That(ErrorCount, Is.EqualTo(2));
-			Assert.That(
-				ContainsError(@"Fieldset must have a legend: <fieldset xmlns=""http://www.w3.org/1999/xhtml""><legend /></fieldset>"));
-			Assert.That(ContainsError(@"Fieldset must have a legend: <fieldset xmlns=""http://www.w3.org/1999/xhtml"" />"));
 		}
 
 		[Test]

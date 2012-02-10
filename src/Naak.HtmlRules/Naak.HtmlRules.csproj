@@ -52,6 +52,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit\log4net.dll</HintPath>
@@ -82,6 +85,7 @@
     <Compile Include="Impl\AccessibilityRenderer.cs" />
     <Compile Include="Impl\AtLeastOneH1.cs" />
     <Compile Include="Impl\ContextOfLinkTextMustMakeSense.cs" />
+    <Compile Include="Impl\HtmlDocumentExtensions.cs" />
     <Compile Include="Impl\ImagesDontHaveDuplicateAltText.cs" />
     <Compile Include="Impl\Logger.cs" />
     <Compile Include="Impl\NoDuplicateImageAltTags.cs" />
@@ -97,12 +101,9 @@
     <Compile Include="Impl\ServiceLocator.cs" />
     <Compile Include="Impl\TablesHaveColumnHeaders.cs" />
     <Compile Include="Impl\ValidationError.cs" />
-    <Compile Include="Impl\XmlDocumentBuilder.cs" />
     <Compile Include="IRuleConfiguration.cs" />
     <Compile Include="IRuleRepository.cs" />
     <Compile Include="IServiceLocator.cs" />
-    <Compile Include="IXmlDocumentBuilder.cs" />
-    <Compile Include="IXmlNamespaceManagerBuilder.cs" />
     <Compile Include="NaakRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,6 +120,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="xhtml1-transitional.dtd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

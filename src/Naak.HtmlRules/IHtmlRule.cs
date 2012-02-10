@@ -1,10 +1,10 @@
-using System.Xml;
 using Naak.HtmlRules.Impl;
+using HtmlAgilityPack;
 
 namespace Naak.HtmlRules
 {
 	public interface IHtmlRule
 	{
-		ValidationError[] ValidateHtml(XmlDocument document);
+		ValidationError[] ValidateHtml(HtmlDocument document);
 	}
 }
