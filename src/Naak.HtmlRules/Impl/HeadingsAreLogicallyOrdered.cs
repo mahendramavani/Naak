@@ -6,7 +6,7 @@ namespace Naak.HtmlRules.Impl
 {
 	public class HeadingsAreLogicallyOrdered : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 			var headingNodes = new List<XmlNode>();

@@ -6,7 +6,7 @@ namespace Naak.HtmlRules.Impl
 {
 	public class FormElementsHaveLabels : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
@@ -20,9 +20,9 @@ namespace Naak.HtmlRules.Impl
 
 			foreach (var definition in definitions)
 			{
-				var formElementXPath = definition.IsInput ? string.Format("//x:input[@type='{0}']", definition.TagName) : string.Format("//x:{0}", definition.TagName);
+				var formElementXPath = definition.IsInput ? string.Format("//input[@type='{0}']", definition.TagName) : string.Format("//{0}", definition.TagName);
 
-				var elements = document.SelectNodes(formElementXPath, namespaceManager);
+				var elements = document.SelectNodes(formElementXPath);
 
 				foreach (XmlNode element in elements)
 				{
@@ -33,9 +33,9 @@ namespace Naak.HtmlRules.Impl
 					if (idAttribute != null)
 					{
 						var elementId = idAttribute.Value;
-						var xpath = string.Format("//x:label[@for='{0}']", elementId);
+						var xpath = string.Format("//label[@for='{0}']", elementId);
 
-						correspondingLabel = document.SelectSingleNode(xpath, namespaceManager);
+						correspondingLabel = document.SelectSingleNode(xpath);
 					}
 
 					if (correspondingLabel == null)

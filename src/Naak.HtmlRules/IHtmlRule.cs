@@ -5,6 +5,6 @@ namespace Naak.HtmlRules
 {
 	public interface IHtmlRule
 	{
-		ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager);
+		ValidationError[] ValidateHtml(XmlDocument document);
 	}
 }

@@ -5,11 +5,11 @@ namespace Naak.HtmlRules.Impl
 {
 	public class LabelsRelateToFormElements : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			XmlNodeList labels = document.SelectNodes("//x:label", namespaceManager);
+			XmlNodeList labels = document.SelectNodes("//label");
 
 			foreach (XmlNode label in labels)
 			{
@@ -19,20 +19,20 @@ namespace Naak.HtmlRules.Impl
 				if (forAttribute != null)
 				{
 					string labelId = forAttribute.Value;
-					string xpath = string.Format("//x:input[@id='{0}']", labelId);
+					string xpath = string.Format("//input[@id='{0}']", labelId);
 
-					relatedElement = document.SelectSingleNode(xpath, namespaceManager);
+					relatedElement = document.SelectSingleNode(xpath);
 
 					if (relatedElement == null)
 					{
-						xpath = string.Format("//x:select[@id='{0}']", labelId);
-						relatedElement = document.SelectSingleNode(xpath, namespaceManager);
+						xpath = string.Format("//select[@id='{0}']", labelId);
+						relatedElement = document.SelectSingleNode(xpath);
 					}
 
 					if (relatedElement == null)
 					{
-						xpath = string.Format("//x:textarea[@id='{0}']", labelId);
-						relatedElement = document.SelectSingleNode(xpath, namespaceManager);
+						xpath = string.Format("//textarea[@id='{0}']", labelId);
+						relatedElement = document.SelectSingleNode(xpath);
 					}
 				}
 

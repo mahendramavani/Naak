@@ -42,14 +42,14 @@ namespace Naak.HtmlRules.Impl
 			}
 		}
 
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
 			var existingLinks = new List<Link>();
-			const string formElementXPath = "//x:a";
+			const string formElementXPath = "//a";
 
-			var linksNodeList = document.SelectNodes(formElementXPath, namespaceManager);
+			var linksNodeList = document.SelectNodes(formElementXPath);
 
 			if (linksNodeList != null)
 				foreach (XmlNode currentNode in linksNodeList)

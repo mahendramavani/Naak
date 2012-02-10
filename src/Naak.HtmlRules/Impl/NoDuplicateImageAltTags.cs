@@ -7,11 +7,11 @@ namespace Naak.HtmlRules.Impl
 {
 	public class NoDuplicateImageAltTags : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			//XmlNodeList nodes = document.SelectNodes("//x:img", namespaceManager);
+			//XmlNodeList nodes = document.SelectNodes("//img", namespaceManager);
 			//var nodeList = new List<XmlNode>();
 
 			//foreach (XmlNode node in nodes)

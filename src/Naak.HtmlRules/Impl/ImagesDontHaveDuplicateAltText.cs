@@ -6,14 +6,14 @@ namespace Naak.HtmlRules.Impl
 	public class ImagesDontHaveDuplicateAltText : IHtmlRule
 	{
 
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 			var previousAltText = new List<string>();
 
-			const string formElementXPath = "//x:img";
+			const string formElementXPath = "//img";
 
-			XmlNodeList images = document.SelectNodes(formElementXPath, namespaceManager);
+			XmlNodeList images = document.SelectNodes(formElementXPath);
 
 			foreach (XmlNode currentImage in images)
 			{

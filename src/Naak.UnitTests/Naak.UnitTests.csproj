@@ -89,7 +89,6 @@
     <Compile Include="TablesHaveColumnHeadersTester.cs" />
     <Compile Include="ValidationErrorTester.cs" />
     <Compile Include="XmlDocumentBuilderTester.cs" />
-    <Compile Include="XmlNamespaceManagerBuilderTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Naak.HtmlRules\Naak.HtmlRules.csproj">

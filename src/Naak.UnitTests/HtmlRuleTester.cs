@@ -17,17 +17,16 @@ namespace Naak.UnitTests
 		protected static void AssertHtmlRulePasses(IHtmlRule htmlRule, string bodyHtml)
 		{
 			var document = GetDocument(bodyHtml);
-			var records = htmlRule.ValidateHtml(document, GetNamespaceManager(document));
+			var records = htmlRule.ValidateHtml(document);
 
 			Assert.That(records.Length, Is.EqualTo(0));
 		}
 
-		protected void ExecuteTest(IHtmlRule rule, string bodyHtml)
+		protected void ExecuteTest<T>(T rule, string bodyHtml) where T: IHtmlRule
 		{
 			XmlDocument document = GetDocument(bodyHtml);
-			XmlNamespaceManager namespaceManager = GetNamespaceManager(document);
 
-			_errors = rule.ValidateHtml(document, namespaceManager);
+			_errors = rule.ValidateHtml(document);
 		}
 
 		protected int ErrorCount
@@ -44,20 +43,12 @@ namespace Naak.UnitTests
 		protected static void AssertHtmlRuleFails(IHtmlRule htmlRule, string bodyHtml, int lineNumber, int linePosition, string message)
 		{
 			XmlDocument document = GetDocument(bodyHtml);
-			XmlNamespaceManager namespaceManager = GetNamespaceManager(document);
 
 			IHtmlRule rule = htmlRule;
-			var records = rule.ValidateHtml(document, namespaceManager);
+			var records = rule.ValidateHtml(document);
 
 			Assert.That(records.Length, Is.EqualTo(1));
 			Assert.That(records[0].Message, Is.EqualTo(message));
-		}
-
-		private static XmlNamespaceManager GetNamespaceManager(XmlDocument document)
-		{
-			var namespaceManager = new XmlNamespaceManager(document.NameTable);
-			namespaceManager.AddNamespace("x", "http://www.w3.org/1999/xhtml");
-			return namespaceManager;
 		}
 
 		private static XmlDocument GetDocument(string body)

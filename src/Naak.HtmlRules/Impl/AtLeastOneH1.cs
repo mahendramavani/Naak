@@ -5,11 +5,11 @@ namespace Naak.HtmlRules.Impl
 {
 	public class AtLeastOneH1 : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			XmlNodeList nodes = document.SelectNodes("//x:h1", namespaceManager);
+			XmlNodeList nodes = document.SelectNodes("//h1");
 
 			if (nodes.Count == 0)
 			{

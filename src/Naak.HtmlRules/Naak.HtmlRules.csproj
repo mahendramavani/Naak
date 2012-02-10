@@ -98,7 +98,6 @@
     <Compile Include="Impl\TablesHaveColumnHeaders.cs" />
     <Compile Include="Impl\ValidationError.cs" />
     <Compile Include="Impl\XmlDocumentBuilder.cs" />
-    <Compile Include="Impl\XmlNamespaceManagerBuilder.cs" />
     <Compile Include="IRuleConfiguration.cs" />
     <Compile Include="IRuleRepository.cs" />
     <Compile Include="IServiceLocator.cs" />

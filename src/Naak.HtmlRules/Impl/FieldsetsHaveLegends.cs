@@ -6,11 +6,11 @@ namespace Naak.HtmlRules.Impl
 {
 	public class FieldsetsHaveLegends : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			XmlNodeList nodes = document.SelectNodes("//x:fieldset[not(x:legend) or x:legend[not(text())]]", namespaceManager);
+			XmlNodeList nodes = document.SelectNodes("//fieldset[not(legend) or legend[not(text())]]");
 
 			foreach (XmlNode node in nodes)
 			{

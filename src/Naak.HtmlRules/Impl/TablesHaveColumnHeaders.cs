@@ -5,17 +5,17 @@ namespace Naak.HtmlRules.Impl
 {
 	public class TablesHaveColumnHeaders : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			XmlNodeList nodes = document.SelectNodes("//x:table", namespaceManager);
+			XmlNodeList nodes = document.SelectNodes("//table");
 
 			if (nodes != null)
 				foreach (XmlNode node in nodes)
 				{
-					XmlNodeList tableHeaders = node.SelectNodes("x:tr/x:th", namespaceManager);
-					XmlNodeList tableHeadersWithThead = node.SelectNodes("x:thead/x:tr/x:th", namespaceManager);
+					XmlNodeList tableHeaders = node.SelectNodes("tr/th");
+					XmlNodeList tableHeadersWithThead = node.SelectNodes("thead/tr/th");
                     if (tableHeaders.Count < 1 && tableHeadersWithThead.Count < 1)
 					{
 						string message =

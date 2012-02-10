@@ -22,21 +22,19 @@ namespace Naak.UnitTests
 
 			var ruleConfiguration = MockRepository.GenerateStub<IRuleRepository>();
 			var documentBuilder = MockRepository.GenerateStub<IXmlDocumentBuilder>();
-			var namespaceManagerBuilder = MockRepository.GenerateStub<IXmlNamespaceManagerBuilder>();
 			var rule1 = MockRepository.GenerateStub<IHtmlRule>();
 			var rule2 = MockRepository.GenerateStub<IHtmlRule>();
 			var rule3 = MockRepository.GenerateStub<IHtmlRule>();
 
 			documentBuilder.Stub(db => db.Build("<test />")).Return(xmlDocument);
-			namespaceManagerBuilder.Stub(nmb => nmb.Build(xmlDocument)).Return(namespaceManager);
 
 			ruleConfiguration.Stub(sl => sl.GetNaakRulesToExecute()).Return(new[] {rule1, rule2, rule3});
 
-			rule1.Stub(rule => rule.ValidateHtml(xmlDocument, namespaceManager)).Return(new[] {record1});
-			rule2.Stub(rule => rule.ValidateHtml(xmlDocument, namespaceManager)).Return(new ValidationError[0]);
-			rule3.Stub(rule => rule.ValidateHtml(xmlDocument, namespaceManager)).Return(new[] {record2, record3});
+			rule1.Stub(rule => rule.ValidateHtml(xmlDocument)).Return(new[] {record1});
+			rule2.Stub(rule => rule.ValidateHtml(xmlDocument)).Return(new ValidationError[0]);
+			rule3.Stub(rule => rule.ValidateHtml(xmlDocument)).Return(new[] {record2, record3});
 
-			IHtmlRuleExecutor executor = new HtmlRuleExecutor(ruleConfiguration, documentBuilder, namespaceManagerBuilder);
+			IHtmlRuleExecutor executor = new HtmlRuleExecutor(ruleConfiguration, documentBuilder);
 			ValidationError[] errors = executor.GetAccessibilityErrors("<test />");
 
 			Assert.That(errors, Is.EqualTo(new[] {record1, record2, record3}));

@@ -7,15 +7,12 @@ namespace Naak.HtmlRules.Impl
 	public class HtmlRuleExecutor : IHtmlRuleExecutor
 	{
 		private readonly IXmlDocumentBuilder _documentBuilder;
-		private readonly IXmlNamespaceManagerBuilder _namespaceManagerBuilder;
-		private readonly IRuleRepository _repository;
+	    private readonly IRuleRepository _repository;
 
-		public HtmlRuleExecutor(IRuleRepository repository, IXmlDocumentBuilder documentBuilder,
-		                        IXmlNamespaceManagerBuilder namespaceManagerBuilder)
+		public HtmlRuleExecutor(IRuleRepository repository, IXmlDocumentBuilder documentBuilder)
 		{
 			_repository = repository;
 			_documentBuilder = documentBuilder;
-			_namespaceManagerBuilder = namespaceManagerBuilder;
 		}
 
 		public ValidationError[] GetAccessibilityErrors(string html)
@@ -25,11 +22,10 @@ namespace Naak.HtmlRules.Impl
 			try
 			{
 				XmlDocument document = _documentBuilder.Build(html);
-				XmlNamespaceManager namespaceManager = _namespaceManagerBuilder.Build(document);
 
 				foreach (var htmlRule in _repository.GetNaakRulesToExecute())
 				{
-					ValidationError[] currentRecords = htmlRule.ValidateHtml(document, namespaceManager);
+					ValidationError[] currentRecords = htmlRule.ValidateHtml(document);
 
 					foreach (var record in currentRecords)
 					{

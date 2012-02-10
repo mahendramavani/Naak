@@ -5,13 +5,13 @@ namespace Naak.HtmlRules.Impl
 {
 	public class ImageInputsHaveAltText : IHtmlRule
 	{
-		public ValidationError[] ValidateHtml(XmlDocument document, XmlNamespaceManager namespaceManager)
+		public ValidationError[] ValidateHtml(XmlDocument document)
 		{
 			var records = new List<ValidationError>();
 
-			string formElementXPath = "//x:input[@type='image'][not(@alt) or @alt='']";
+			string formElementXPath = "//input[@type='image'][not(@alt) or @alt='']";
 
-			XmlNodeList imageButtonsWithoutAlt = document.SelectNodes(formElementXPath, namespaceManager);
+			XmlNodeList imageButtonsWithoutAlt = document.SelectNodes(formElementXPath);
 
 			foreach (XmlNode imageButton in imageButtonsWithoutAlt)
 			{
