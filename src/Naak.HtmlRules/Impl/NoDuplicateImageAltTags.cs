@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using System.Linq;
 using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl

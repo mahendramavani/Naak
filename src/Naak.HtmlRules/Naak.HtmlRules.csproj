@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Naak.HtmlRules</RootNamespace>
     <AssemblyName>Naak.HtmlRules</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,78 +53,46 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.0.87\lib\net40\Glimpse.Core.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.3\lib\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\nunit\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\structuremap\StructureMap.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyRegistrar.cs" />
+    <Compile Include="CaptureStream.cs" />
+    <Compile Include="Plugin.cs" />
     <Compile Include="IHtmlRule.cs" />
-    <Compile Include="IHtmlRuleExecutor.cs" />
     <Compile Include="Impl\AccessibilityRenderer.cs" />
     <Compile Include="Impl\AtLeastOneH1.cs" />
     <Compile Include="Impl\ContextOfLinkTextMustMakeSense.cs" />
     <Compile Include="Impl\HtmlDocumentExtensions.cs" />
     <Compile Include="Impl\ImagesDontHaveDuplicateAltText.cs" />
-    <Compile Include="Impl\Logger.cs" />
     <Compile Include="Impl\NoDuplicateImageAltTags.cs" />
     <Compile Include="Impl\FieldsetsHaveLegends.cs" />
     <Compile Include="Impl\FormElementsHaveLabels.cs" />
     <Compile Include="Impl\HeadingsAreLogicallyOrdered.cs" />
-    <Compile Include="Impl\HtmlRuleExecutor.cs" />
     <Compile Include="Impl\ImageInputsHaveAltText.cs" />
     <Compile Include="Impl\ImagesHaveAltText.cs" />
     <Compile Include="Impl\LabelsRelateToFormElements.cs" />
-    <Compile Include="Impl\RuleConfiguration.cs" />
-    <Compile Include="Impl\RuleRepository.cs" />
-    <Compile Include="Impl\ServiceLocator.cs" />
     <Compile Include="Impl\TablesHaveColumnHeaders.cs" />
     <Compile Include="Impl\ValidationError.cs" />
-    <Compile Include="IRuleConfiguration.cs" />
-    <Compile Include="IRuleRepository.cs" />
-    <Compile Include="IServiceLocator.cs" />
-    <Compile Include="NaakRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tjoc.Web.Validator\Tjoc.Web.Validator.csproj">
-      <Project>{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}</Project>
-      <Name>Tjoc.Web.Validator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\validator_module_license.txt">
-      <Link>validator_module_license.txt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Readme\glimpse.readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="xhtml1-transitional.dtd">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

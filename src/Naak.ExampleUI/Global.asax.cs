@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web;
-using Naak.HtmlRules;
 
 namespace Naak.ExampleUI
 {
@@ -8,7 +7,6 @@ namespace Naak.ExampleUI
 	{
 		protected void Application_BeginRequest(object sender, EventArgs e)
 		{
-			DependencyRegistrar.EnsureDependenciesRegistered();
 		}
 	}
 }

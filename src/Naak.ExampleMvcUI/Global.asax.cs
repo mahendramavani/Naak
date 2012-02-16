@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Naak.HtmlRules;
 
 namespace Naak.ExampleMvcUI
 {
@@ -22,13 +21,6 @@ namespace Naak.ExampleMvcUI
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);
-        }
-
-        protected void Application_BeginRequest()
-        {
-            DependencyRegistrar.EnsureDependenciesRegistered();
-
-            string s = Request.Path;
         }
     }
 }

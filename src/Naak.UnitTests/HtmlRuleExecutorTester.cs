@@ -19,19 +19,15 @@ namespace Naak.UnitTests
 
 			var xmlDocument = new HtmlDocument();
 
-			var ruleConfiguration = MockRepository.GenerateStub<IRuleRepository>();
 			var rule1 = MockRepository.GenerateStub<IHtmlRule>();
 			var rule2 = MockRepository.GenerateStub<IHtmlRule>();
 			var rule3 = MockRepository.GenerateStub<IHtmlRule>();
-
-			ruleConfiguration.Stub(sl => sl.GetNaakRulesToExecute()).Return(new[] {rule1, rule2, rule3});
 
 			rule1.Stub(rule => rule.ValidateHtml(xmlDocument)).Return(new[] {record1});
 			rule2.Stub(rule => rule.ValidateHtml(xmlDocument)).Return(new ValidationError[0]);
 			rule3.Stub(rule => rule.ValidateHtml(xmlDocument)).Return(new[] {record2, record3});
 
-			IHtmlRuleExecutor executor = new HtmlRuleExecutor(ruleConfiguration);
-			ValidationError[] errors = executor.GetAccessibilityErrors("<test />");
+			ValidationError[] errors = null;
 
 			Assert.That(errors, Is.EqualTo(new[] {record1, record2, record3}));
 		}

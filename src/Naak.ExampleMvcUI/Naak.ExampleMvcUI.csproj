@@ -14,6 +14,7 @@
     <AssemblyName>Naak.ExampleMvcUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -105,10 +106,6 @@
     <ProjectReference Include="..\Naak.HtmlRules\Naak.HtmlRules.csproj">
       <Project>{5898B957-EF51-4EAC-ABDF-2B2220B3B0F6}</Project>
       <Name>Naak.HtmlRules</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tjoc.Web.Validator\Tjoc.Web.Validator.csproj">
-      <Project>{C0866A16-6767-40AB-9F5C-3749A4BD3ECF}</Project>
-      <Name>Tjoc.Web.Validator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

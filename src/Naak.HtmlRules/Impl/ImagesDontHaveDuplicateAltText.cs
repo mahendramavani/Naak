@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Xml;
 using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
