@@ -6,6 +6,8 @@
         <title></title>
     </head>
     <body>
-        This is a test
+        <h1>This is Page Header</h1>
+        This is a test<br/>
+        <img src="http://download.codeplex.com/Download?ProjectName=mef&DownloadId=316014&Build=18398"/>
     </body>
 </html>

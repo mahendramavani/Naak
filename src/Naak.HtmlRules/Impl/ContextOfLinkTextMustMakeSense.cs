@@ -4,6 +4,7 @@ using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
+    [HtmlRule]
 	public class ContextOfLinkTextMustMakeSense : IHtmlRule
 	{
 		public class Link

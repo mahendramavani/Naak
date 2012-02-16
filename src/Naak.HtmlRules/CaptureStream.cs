@@ -74,6 +74,7 @@ namespace Naak.HtmlRules
 
         public string ReadToEnd()
         {
+            CopyStream.Position = 0;
             using (var sr = new StreamReader(CopyStream))
             {
                 return sr.ReadToEnd();

@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
+    [HtmlRule]
 	public class LabelsRelateToFormElements : IHtmlRule
 	{
 		public ValidationError[] ValidateHtml(HtmlDocument document)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
@@ -48,7 +49,13 @@ namespace Naak.HtmlRules.Impl
         
         private static object RenderHtml(IEnumerable<ValidationError> records)
 		{
-		    return null;
+            if (records != null && records.Any())
+            {
+                var data = new List<object[]> { new[] { "Message", "LineNumber", "Position" } };
+                data.AddRange(records.Select(record => new object[] { record.Message, record.LineNumber, record.LinePosition, "error" }));
+                return data;
+            }
+            return "All accessibility rules passed.";
 		}
 	}
 }

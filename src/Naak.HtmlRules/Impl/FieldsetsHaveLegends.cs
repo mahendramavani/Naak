@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
+    [HtmlRule]
 	public class FieldsetsHaveLegends : IHtmlRule
 	{
 		public ValidationError[] ValidateHtml(HtmlDocument document)

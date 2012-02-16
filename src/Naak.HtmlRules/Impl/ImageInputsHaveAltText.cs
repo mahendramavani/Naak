@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
+    [HtmlRule]
 	public class ImageInputsHaveAltText : IHtmlRule
 	{
 		public ValidationError[] ValidateHtml(HtmlDocument document)
@@ -16,7 +17,7 @@ namespace Naak.HtmlRules.Impl
 			foreach (var imageButton in imageButtonsWithoutAlt)
 			{
 				string message = string.Format("Image input missing alt text: {0}", imageButton.OuterHtml);
-				records.Add(new ValidationError(message));
+                records.Add(new ValidationError(message, imageButton.Line, imageButton.LinePosition));
 			}
 
 			return records.ToArray();

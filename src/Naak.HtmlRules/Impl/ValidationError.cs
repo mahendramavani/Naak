@@ -1,5 +1,8 @@
+using System;
+
 namespace Naak.HtmlRules.Impl
 {
+    [Serializable]
 	public class ValidationError
 	{
 	    public ValidationError(string message) : this(message, 0, 0)

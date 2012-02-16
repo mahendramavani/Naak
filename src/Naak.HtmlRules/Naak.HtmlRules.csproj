@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaptureStream.cs" />
+    <Compile Include="HtmlRuleAttribute.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="IHtmlRule.cs" />
     <Compile Include="Impl\AccessibilityRenderer.cs" />

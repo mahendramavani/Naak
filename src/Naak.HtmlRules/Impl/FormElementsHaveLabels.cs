@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 
 namespace Naak.HtmlRules.Impl
 {
+    [HtmlRule]
 	public class FormElementsHaveLabels : IHtmlRule
 	{
 		public ValidationError[] ValidateHtml(HtmlDocument document)

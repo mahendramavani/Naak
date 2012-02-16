@@ -17,8 +17,8 @@ namespace Naak.HtmlRules
             return renderer.Render(html, Rules);
         }
 
-        [Import]
-        private IEnumerable<IHtmlRule> Rules { get; set; }
+        [ImportMany]
+        public IEnumerable<IHtmlRule> Rules { get; set; }
 
         public void SetupInit()
         {
@@ -27,8 +27,8 @@ namespace Naak.HtmlRules
 
         private void AddContentStream(object sender, EventArgs e)
         {
-            var contentStream = new CaptureStream(HttpContext.Current.Request.Filter);
-            HttpContext.Current.Request.Filter = contentStream;
+            var contentStream = new CaptureStream(HttpContext.Current.Response.Filter);
+            HttpContext.Current.Response.Filter = contentStream;
             CurrentContentStream = contentStream;
         }
 
